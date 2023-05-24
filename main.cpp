@@ -49,8 +49,11 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		ImGui::Begin("CameraSet");
 		ImGui::DragFloat3("CameraTranslate", &camera->pos.x, 0.01f);
 		ImGui::DragFloat3("CameraRotate", &camera->rotate.x, 0.01f);
+		ImGui::DragFloat3("SphereCenter", &sphere->translation.x, 0.01f);
+		ImGui::DragFloat("SphereRadius", &sphere->radius, 0.01f);
 		ImGui::End();
 
+		sphere->Update();
 
 		///
 		/// ↑更新処理ここまで
@@ -63,7 +66,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 
 		DrawGrid(camera->getViewProjectionMatrix(), camera->getViewPortMatrix());
 
-		sphere->Draw(camera->getViewProjectionMatrix(), camera->getViewPortMatrix());
+		sphere->Draw(camera->getViewProjectionMatrix(), camera->getViewPortMatrix(), 0xff);
 
 		///
 		/// ↑描画処理ここまで
