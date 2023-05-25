@@ -18,6 +18,7 @@ public:
 public:
 	float radius;
 	Vector3D translation;
+	Vector3D worldRoate;
 
 private:
 	Vector3D loaclVec;

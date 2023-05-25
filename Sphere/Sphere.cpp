@@ -19,7 +19,7 @@ Sphere::Sphere() :
 		rotate.z = -std::numbers::pi_v<float> / 2.0f;
 		spherePosList->push_back(std::vector<Vector3D>(0));
 		for (int z = 0; z <= kDivision; z++) {
-			worldMat = MakeMatrixScalar(scale) * MakeMatrixRotateZ(rotate.z) * MakeMatrixRotateY(rotate.y) * MakeMatrixTranslate(translation);
+			worldMat = MakeMatrixRotateZ(rotate.z) * MakeMatrixRotateY(rotate.y) * MakeMatrixAffin(scale, worldRoate, translation);
 			spherePosList->rbegin()->push_back(loaclVec * worldMat);
 			rotate.z += (std::numbers::pi_v<float> / static_cast<float>(kDivision));
 		}
@@ -44,7 +44,7 @@ void Sphere::Update() {
 		rotate.z = -std::numbers::pi_v<float> / 2.0f;
 		spherePosList->push_back(std::vector<Vector3D>(0));
 		for (int z = 0; z <= kDivision; z++) {
-			worldMat = MakeMatrixScalar(scale) * MakeMatrixRotateZ(rotate.z) * MakeMatrixRotateY(rotate.y) * MakeMatrixTranslate(translation);
+			worldMat = MakeMatrixRotateZ(rotate.z) * MakeMatrixRotateY(rotate.y) * MakeMatrixAffin(scale, worldRoate, translation);
 			spherePosList->rbegin()->push_back(loaclVec * worldMat);
 			rotate.z += (std::numbers::pi_v<float> / static_cast<float>(kDivision));
 		}
